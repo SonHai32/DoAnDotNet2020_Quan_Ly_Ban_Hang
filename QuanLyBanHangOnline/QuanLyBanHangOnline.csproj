@@ -160,6 +160,7 @@
     <Compile Include="Modal\ChiTietDonHang.cs" />
     <Compile Include="Modal\DonHang.cs" />
     <Compile Include="Modal\KhachHang.cs" />
+    <Compile Include="Modal\LoaiSanPham.cs" />
     <Compile Include="Modal\SanPham.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
