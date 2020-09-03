@@ -10,17 +10,14 @@ namespace QuanLyBanHangOnline.Controller
 {
     class DAOSanPham
     {
-        
 
-        
-
-        public bool insertData(SanPham sanPham)
+        public String insertData(SanPham sanPham)
         {
             SqlCommand command = new SqlCommand();
             command.CommandText = "INSERT INTO dbo.sanPham (maSP, tenSP, hinhDD, ndTomTat, nhaSanXuat, ngayDang, " +
                 "maLoai, noiDung, taiKhoan, giaBan, giamGia, daDuyet ) values('@maSP', '@tenSP', '@hinhDD', '@ndTomTat', '@nhaSanXuat', '@ngayDang'" +
                 ", " +
-                "'@maLoai', '@noiDung', '@taiKhoan', @giaBan, @giamGia, @daDuyet)";
+                "@maLoai, '@noiDung', '@taiKhoan', @giaBan, @giamGia, @daDuyet)";
             command.Parameters.AddWithValue("@masp", sanPham.MaSP);
             command.Parameters.AddWithValue("@tenSP", sanPham.TenSP);
             command.Parameters.AddWithValue("@hinhDD", sanPham.HinhDD);
@@ -37,18 +34,48 @@ namespace QuanLyBanHangOnline.Controller
             try{
                 SqlConnection con = new DAO().getConnection();
                 con.Open();
-                return command.ExecuteNonQuery() > 0;
+                return command.ExecuteNonQuery() > 0 ? "Thêm Thành Công Sản Phẩm " + sanPham.MaSP: "Thêm Đơn Hàng Không Thành Công";
             }
             catch(SqlException e)
             {
-                return false;
+                return e.Message;
             }
-            
+           
+        }
 
-            //String queryString = "INSERT INTO dbo.sanPham (maSP, tenSP, hinhDD, ndTomTat, nhaSanXuat, ngayDang, " +
-            //    "maLoai, noiDung, taiKhoan, giaBan, giamGia, daDuyet ) values('"+sanPham.maSP+"', '"+sanPham.tenSP+"', '"+sanPham.hinhDD+"', '"+sanPham.ndTomTat+"', " +
-            //    "'"+sanPham.nhaSanXuat+"', '"+sanPham.ngayDang.ToString("yyyy/MM/dd")+"', '"+sanPham.maLoai+"', '"+sanPham.noiDung+"', '"+sanPham.noiDung+"', "+sanPham.giaBan+", "+sanPham.giamGia+", "+(sanPham.daDuyet ? 1 : 0)+")";
-           // return new DAO().executeCommands(new DAO().getConnection(), queryString);
+        public String updateData(SanPham sanPham)
+        {
+//            String checkExistedMaLoaiQuery = "SELECT * FROM dbo.sanPham where maLoai="+sanPham.MaLoai+"";
+
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "UPDATE dbo.sanPham set maSP='@maSP', tenSP='@tenSP', hinhDD='@hinhDD', ndTomTat='@ndTomTat', nhaSanXuat='@nhaSanXuat', ngayDang='@ngayDang'" +
+                ", " +
+                "maLoai=@maLoai, noiDung='@noiDung', taiKhoan='@taiKhoan', giaBan=@giaBan, giamGia=@giamGia, daDuyet=@daDuyet)";
+            command.Parameters.AddWithValue("@masp", sanPham.MaSP);
+            command.Parameters.AddWithValue("@tenSP", sanPham.TenSP);
+            command.Parameters.AddWithValue("@hinhDD", sanPham.HinhDD);
+            command.Parameters.AddWithValue("@ndTomTat", sanPham.NdTomTat);
+            command.Parameters.AddWithValue("@nhaSanXuat", sanPham.NhaSanXuat);
+            command.Parameters.AddWithValue("@ngayDang", sanPham.NgayDang);
+            command.Parameters.AddWithValue("@maLoai", sanPham.MaLoai);
+            command.Parameters.AddWithValue("@noiDung", sanPham.NoiDung);
+            command.Parameters.AddWithValue("@taiKhoan", sanPham.TaiKhoan);
+            command.Parameters.AddWithValue("@giaBan", sanPham.GiaBan);
+            command.Parameters.AddWithValue("@giamGia", sanPham.GiamGia);
+            command.Parameters.AddWithValue("@daDuyet", sanPham.DaDuyet ? 1 : 0);
+
+            try{
+                SqlConnection con = new DAO().getConnection();
+                con.Open();
+                return command.ExecuteNonQuery() > 0 ? "Sửa Đổi Thành Công Sản Phẩm" + sanPham.MaSP : "Sửa Đổi Không Thành Công" ;
+
+            }
+            catch(SqlException e)
+            {
+                return e.Message;
+            }
+
         }
 
         

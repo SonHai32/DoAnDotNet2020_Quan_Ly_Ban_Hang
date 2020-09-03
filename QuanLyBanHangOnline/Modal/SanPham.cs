@@ -14,14 +14,14 @@ namespace QuanLyBanHangOnline.Modal
         private String ndTomTat;
         private String nhaSanXuat;
         private DateTime ngayDang;
-        private String maLoai;
+        private int maLoai;
         private String noiDung;
         private String taiKhoan;
         private Double giaBan ;
         private float giamGia;
         private bool daDuyet;
 
-        public SanPham(string maSP, string tenSP, string hinhDD, string ndTomTat, string nhaSanXuat, DateTime ngayDang, string maLoai, string noiDung, string taiKhoan, double giaBan, float giamGia, bool daDuyet)
+        public SanPham(string maSP, string tenSP, string hinhDD, string ndTomTat, string nhaSanXuat, DateTime ngayDang, int maLoai, string noiDung, string taiKhoan, double giaBan, float giamGia, bool daDuyet)
         {
             this.MaSP = maSP;
             this.TenSP = tenSP;
@@ -39,7 +39,7 @@ namespace QuanLyBanHangOnline.Modal
 
         public string NhaSanXuat { get => nhaSanXuat; set => nhaSanXuat = value; }
         public DateTime NgayDang { get => ngayDang; set => ngayDang = value; }
-        public string MaLoai { get => maLoai; set => maLoai = value; }
+        public int MaLoai { get => maLoai; set => maLoai = value; }
         public string NoiDung { get => noiDung; set => noiDung = value; }
         public string TaiKhoan { get => taiKhoan; set => taiKhoan = value; }
         public double GiaBan { get => giaBan; set => giaBan = value; }
