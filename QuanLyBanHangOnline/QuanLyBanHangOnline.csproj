@@ -164,6 +164,7 @@
     <Compile Include="Modal\NhomTK.cs" />
     <Compile Include="Modal\QuanHuyen.cs" />
     <Compile Include="Modal\SanPham.cs" />
+    <Compile Include="Modal\TaiKhoanTV.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
